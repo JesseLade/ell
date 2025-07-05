@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+
+import sys
+from ell_interpreter import run_ell_lines, render_gui
+
+# Check if a file argument is provided
+if len(sys.argv) != 2:
+    print("Usage: ell <filename.ell>")
+    sys.exit(1)
+
+filename = sys.argv[1]
+
+# Check if the file exists
+try:
+    with open(filename, 'r') as f:
+        lines = f.readlines()
+except FileNotFoundError:
+    print(f"❌ File '{filename}' not found.")
+    sys.exit(1)
+
+# Run the interpreter
+run_ell_lines(lines)
+render_gui()
